@@ -3,7 +3,8 @@ import React from 'react'
 const Movie = (props) => {
 
     const selectMovie = () => {
-        props.selectMovie()
+        // console.log('in the movie component callback function', props.movie.id)
+        props.selectMovie(props.movie)
     }
 
     return (

@@ -37,8 +37,9 @@ class MovieLibrary extends React.Component {
 
     }
 
-    selectMovie = () => {
-        this.props.selectMovie()
+    selectMovie = (movie) => {
+        // console.log('in the movie library', movieID)
+        this.props.selectMovie(movie)
     }
 
     movieCollection = () => {

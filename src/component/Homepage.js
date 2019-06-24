@@ -7,11 +7,19 @@ import CustomerList from './CustomerList';
 class Homepage extends Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      selectedMovie: undefined
+    };
   }
 
-  selectMovie = () => {
-    console.log('inside the select movie method!')
+  selectMovie = (movie) => {
+    console.log('inside the select movie method!', movie.title)
+
+    this.setState({
+      selectedMovie: movie
+    })
+
+    console.log(this.state.selectedMovie)
   }
 
 
