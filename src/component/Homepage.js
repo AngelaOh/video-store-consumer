@@ -10,8 +10,8 @@ class Homepage extends Component {
     this.state = {};
   }
 
-  selectCard = () => {
-    
+  selectMovie = (movieID) => {
+    console.log('inside the select movie method!', movieID)
   }
 
 
@@ -29,7 +29,12 @@ class Homepage extends Component {
         </p>
 
         <Route path="/MovieSearch" component={MovieSearch} />
-        <Route path="/MovieLibrary" component={MovieLibrary} />
+        <Route 
+        path="/MovieLibrary" 
+        render={() => (
+          <MovieLibrary selectMovie={this.selectMovie()} />
+        )}
+        />
         <Route path="/CustomerList" component={CustomerList} />
       </Router>
     );
