@@ -10,6 +10,11 @@ class Homepage extends Component {
     this.state = {};
   }
 
+  selectCard = () => {
+    
+  }
+
+
   navigation = () => {
     return (
       <Router>
