@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-const CustomerList = () => {
-  return <h1>CUSOMTER LIST PLACE HOLDER</h1>;
+const CustomerList = ({ customerSelectCallback }) => {
+  return <h1>CUSOMTER LIST PLACE HOLDER {customerSelectCallback()} </h1>;
 };
 
 export default CustomerList;

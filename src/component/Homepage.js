@@ -25,9 +25,19 @@ class Homepage extends Component {
 
         <Route path="/MovieSearch" component={MovieSearch} />
         <Route path="/MovieLibrary" component={MovieLibrary} />
-        <Route path="/CustomerList" component={CustomerList} />
+        <Route
+          path="/CustomerList"
+          render={() => (
+            <CustomerList customerSelectCallback={this.onCustomerSelect} />
+          )}
+        />
       </Router>
     );
+  };
+
+  onCustomerSelect = () => {
+    // this will updated selected customer
+    console.log('this is a callback');
   };
 
   render() {
