@@ -11,10 +11,11 @@ class CustomerList extends Component {
     };
   }
   customerCollection = () => {
-    return this.state.customerList.map(customer => {
+    return this.state.customerList.map((customer, i) => {
       return (
         <Customer
           {...customer}
+          key={i}
           customerSelectCallback={this.props.customerSelectCallback}
         />
       );
@@ -33,11 +34,9 @@ class CustomerList extends Component {
         const customerList = response.data.map(customer => {
           return customer;
         });
-        console.log(customerList);
         this.setState({
           customerList: customerList,
         });
-        console.log('state!', this.state);
       })
       .catch(error => {
         return console.log(error.message);

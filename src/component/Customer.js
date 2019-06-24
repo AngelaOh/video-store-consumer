@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Customer = props => {
-  console.log(props);
   return (
     <div>
       <h2>
@@ -10,6 +9,10 @@ const Customer = props => {
       </h2>
       <p>Number of movies checked out: {props.movies_checked_out_count}</p>
       <p>Account credit: {props.account_credit}</p>
+      <button onClick={() => props.customerSelectCallback({ ...props })}>
+        SELECT
+      </button>
+      <br />
       -----------------------------------------
     </div>
   );

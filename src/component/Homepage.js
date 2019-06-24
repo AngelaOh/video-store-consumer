@@ -35,9 +35,8 @@ class Homepage extends Component {
     );
   };
 
-  onCustomerSelect = () => {
-    // this will updated selected customer
-    console.log('this is a callback');
+  onCustomerSelect = customer => {
+    this.setState({ currentCustomer: customer });
   };
 
   render() {
