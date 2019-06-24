@@ -7,8 +7,21 @@ import CustomerList from './CustomerList';
 class Homepage extends Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      selectedMovie: undefined
+    };
   }
+
+  selectMovie = (movie) => {
+    console.log('inside the select movie method!', movie.title)
+
+    this.setState({
+      selectedMovie: movie
+    })
+
+    console.log(this.state.selectedMovie)
+  }
+
 
   navigation = () => {
     return (
@@ -24,7 +37,12 @@ class Homepage extends Component {
         </p>
 
         <Route path="/MovieSearch" component={MovieSearch} />
-        <Route path="/MovieLibrary" component={MovieLibrary} />
+        <Route 
+        path="/MovieLibrary" 
+        render={() => (
+          <MovieLibrary selectMovie={this.selectMovie} />
+        )}
+        />
         <Route path="/CustomerList" component={CustomerList} />
       </Router>
     );
