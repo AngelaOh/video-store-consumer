@@ -3,7 +3,7 @@ import React from 'react'
 const Movie = (props) => {
 
     const selectMovie = () => {
-        props.selectMovie(props.movie.id)
+        props.selectMovie()
     }
 
     return (

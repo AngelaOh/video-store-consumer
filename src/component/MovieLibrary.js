@@ -37,8 +37,8 @@ class MovieLibrary extends React.Component {
 
     }
 
-    selectMovie = (movieID) => {
-        this.props.selectMovie(movieID)
+    selectMovie = () => {
+        this.props.selectMovie()
     }
 
     movieCollection = () => {
@@ -47,7 +47,7 @@ class MovieLibrary extends React.Component {
             return (
                 < Movie 
                 movie={movie} 
-                selectMovie={this.selectMovie()} />
+                selectMovie={this.selectMovie} />
             )
         })
         )
