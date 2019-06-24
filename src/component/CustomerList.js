@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Customer from './Customer';
 
 class CustomerList extends Component {
   constructor(props) {
@@ -13,14 +14,14 @@ class CustomerList extends Component {
       return (
         <Customer
           {...customer}
-          customerSelectCallback={props.customerSelectCallback}
+          customerSelectCallback={this.props.customerSelectCallback}
         />
       );
     });
   };
 
   componentDidMount() {
-    getCusomters();
+    this.getCustomers();
   }
 
   getCustomers = () => {
@@ -43,7 +44,7 @@ class CustomerList extends Component {
   };
 
   render() {
-    return <h1>CUSOMTER LIST PLACE HOLDER {customerSelectCallback()} </h1>;
+    return <div>{this.customerCollection()}</div>;
   }
 }
 
