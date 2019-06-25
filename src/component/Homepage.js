@@ -4,6 +4,7 @@ import MovieLibrary from './MovieLibrary';
 import MovieSearch from './MovieSearch';
 import CustomerList from './CustomerList';
 import CheckOut from './CheckOut';
+import axios from 'axios';
 
 class Homepage extends Component {
   constructor() {
@@ -23,7 +24,30 @@ class Homepage extends Component {
   };
 
   onCheckOut = () => {
-    // DOING THIS NOW
+    const params = {
+      title: this.state.selectedMovie.title,
+      customer_id: this.state.selectedCustomer.id,
+      due_date: new Date(Date.now() + 700000000),
+    };
+    URL = 'http://localhost:3000';
+    axios
+      .post(
+        URL +
+          '/rentals/' +
+          this.state.selectedMovie.title.toString() +
+          '/check-out',
+        params
+      )
+      .then(response => {
+        this.setState({
+          selectedMovie: undefined,
+          selectedCustomer: undefined,
+        });
+        console.log(response);
+      })
+      .catch(error => {
+        return console.log(error.response);
+      });
   };
 
   displaySelected = () => {
