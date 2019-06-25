@@ -18,7 +18,7 @@ class Homepage extends Component {
   };
 
   onCustomerSelect = customer => {
-    this.setState({ currentCustomer: customer });
+    this.setState({ selectedCustomer: customer });
   };
 
   navigation = () => {
