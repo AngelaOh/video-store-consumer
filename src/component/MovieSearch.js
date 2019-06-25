@@ -8,7 +8,6 @@ class MovieSearch extends React.Component {
     this.state = {
       searchTitle: '',
       searchedMovies: undefined,
-      isSearch: true,
     };
   }
 
@@ -49,7 +48,6 @@ class MovieSearch extends React.Component {
         <Movie
           key={movie.id}
           {...movie}
-          isSearch={this.state.isSearch}
           addToLibrary={this.props.addToLibrary}
         />
       );
