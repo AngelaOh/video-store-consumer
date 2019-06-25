@@ -1,33 +1,37 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-class CheckOut extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      customer: props.customer,
-      movie: props.movie,
-    };
-  }
+const CheckOut = ({ customer, movie, checkOutCallBack }) => {
+  return (
+    <div>
+      {customer && displayCustomer(customer)}
+      {movie && displayMovie(movie)}
+      {customer && movie && (
+        <button onClick={() => checkOutCallBack()}>Check Out Movie</button>
+      )}
+    </div>
+  );
+};
 
-  static getDerivedStateFromProps(props, state) {
-    if (props.customer !== state.customer || props.movie !== state.movie) {
-      return { customer: props.customer, movie: props.movie };
-    } else return null;
-  }
+const displayCustomer = customer => {
+  return (
+    <article>
+      <h2>Name: {customer.name} </h2>
+      <p>ID: {customer.id} </p>
+      <p>Account Credit: {customer.account_credit} </p>
+    </article>
+  );
+};
 
-  displayCustomer = () => {};
-  displayMovie = () => {};
-
-  render() {
-    return (
-      <div>
-        TEST
-        {console.log(this.state)};
-      </div>
-    );
-  }
-}
+const displayMovie = movie => {
+  return (
+    <article>
+      <h2>Title: {movie.title} </h2>
+      <p>ID: {movie.id} </p>
+      <img src={movie.image_url} alt="movie photo" />
+    </article>
+  );
+};
 
 CheckOut.propTypes = {};
 

@@ -22,13 +22,19 @@ class Homepage extends Component {
     this.setState({ selectedCustomer: customer });
   };
 
+  onCheckOut = () => {};
+
   displaySelected = () => {
     const { selectedMovie, selectedCustomer } = this.state;
     return (
       <div>
         {console.log('AAAAAHHHHHHH')}
         {(selectedMovie || selectedCustomer) && (
-          <CheckOut movie={selectedMovie} customer={selectedCustomer} />
+          <CheckOut
+            movie={selectedMovie}
+            customer={selectedCustomer}
+            checkOutCallBack={this.onCheckOut}
+          />
         )}
       </div>
     );
