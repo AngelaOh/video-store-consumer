@@ -5,8 +5,8 @@ import axios from 'axios';
 
 class MovieLibrary extends React.Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             movieList: []
         }
@@ -42,7 +42,8 @@ class MovieLibrary extends React.Component {
         this.state.movieList.map((movie) => {
             return (
                 < Movie 
-                movie={movie} 
+                // movie={movie}
+                {...movie} 
                 selectMovie={this.selectMovie} />
             )
         })
