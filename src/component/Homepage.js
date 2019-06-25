@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import MovieLibrary from './MovieLibrary';
 import MovieSearch from './MovieSearch';
 import CustomerList from './CustomerList';
+import CheckOut from './CheckOut';
 
 class Homepage extends Component {
   constructor() {
@@ -21,21 +22,28 @@ class Homepage extends Component {
     this.setState({ selectedCustomer: customer });
   };
 
+  onCheckOut = () => {
+    // DOING THIS NOW
+  };
+
+  displaySelected = () => {
+    const { selectedMovie, selectedCustomer } = this.state;
+    return (
+      <div>
+        {(selectedMovie || selectedCustomer) && (
+          <CheckOut
+            movie={selectedMovie}
+            customer={selectedCustomer}
+            checkOutCallBack={this.onCheckOut}
+          />
+        )}
+      </div>
+    );
+  };
+
   navigation = () => {
     return (
       <Router>
-        {this.state.selectedMovie && (
-          <h1>
-            The movie, {this.state.selectedMovie.title}, has been selected
-          </h1>
-        )}
-
-        {this.state.selectedCustomer && (
-          <h1>
-            The customer, {this.state.selectedCustomer.name}, has been selected
-          </h1>
-        )}
-
         <p>
           <Link to="/MovieSearch">Search Movies</Link>
         </p>
@@ -62,7 +70,12 @@ class Homepage extends Component {
   };
 
   render() {
-    return <section>{this.navigation()}</section>;
+    return (
+      <div>
+        <section>{this.displaySelected()}</section>
+        <section>{this.navigation()}</section>
+      </div>
+    );
   }
 }
 
