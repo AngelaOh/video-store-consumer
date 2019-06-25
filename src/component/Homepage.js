@@ -13,7 +13,6 @@ class Homepage extends Component {
   }
 
   selectMovie = movie => {
-    console.log('inside the select movie method!', movie.title);
 
     this.setState({
       selectedMovie: movie,
@@ -25,6 +24,8 @@ class Homepage extends Component {
   navigation = () => {
     return (
       <Router>
+        {this.state.selectedMovie && <h1>The movie, {this.state.selectedMovie.title}, has been selected</h1> }
+
         <p>
           <Link to="/MovieSearch">Search Movies</Link>
         </p>

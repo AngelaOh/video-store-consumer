@@ -5,62 +5,49 @@ import axios from 'axios';
 
 class MovieLibrary extends React.Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             movieList: []
         }
     }
 
     componentDidMount() {
-        URL = 'http://localhost:3000'
+        this.getMovies();
+    }
 
+    getMovies = () => {
+        URL = 'http://localhost:3000'
         axios.get( URL + '/movies' ) 
         .then((response) => {
             const movieList = response.data.map((movie) => {
-                return (
-                    movie
-                )
-            })
+                return movie
+            });
     
             this.setState ({
                 movieList: movieList
-            })
-
-            console.log('state!', this.state)
+            });
         })
         .catch((error) => {
-            return (
-                console.log(error.message)
-            )
-        })
-
-    }
-
-    selectMovie = (movie) => {
-        // console.log('in the movie library', movieID)
-        this.props.selectMovie(movie)
-    }
+            return console.log(error.message);
+        });
+    };
 
     movieCollection = () => {
         return (
         this.state.movieList.map((movie) => {
             return (
                 < Movie 
-                movie={movie} 
-                selectMovie={this.selectMovie} />
+                key={movie.id}
+                {...movie} 
+                selectMovie={this.props.selectMovie} />
             )
         })
         )
     }
 
     render() {      
-
-        return (
-            <div>
-              {this.movieCollection()}
-            </div>
-        )
+        return <div>{this.movieCollection()}</div>;
     }
 }
 

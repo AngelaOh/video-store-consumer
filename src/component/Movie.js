@@ -1,24 +1,20 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
+
 
 const Movie = (props) => {
 
-    const selectMovie = () => {
-        // console.log('in the movie component callback function', props.movie.id)
-        props.selectMovie(props.movie)
-    }
-
     return (
         <div>
-            <p>ID: {props.movie.id}</p>
-            <p>Title: {props.movie.title}</p>
-            <p>Overview: {props.movie.overview}</p>
-            <p>Release Date: {props.movie.release_date}</p>
-            {/* <p>External ID: {props.movie.external_id}</p> */}
-            <img src={props.movie.image_url} alt='movie photo' />
-            <button onClick={selectMovie}> Select </button>
+            <p>ID: {props.id}</p>
+            <p>Title: {props.title}</p>
+            <p>Overview: {props.overview}</p>
+            <p>Release Date: {props.release_date}</p>
+            <img src={props.image_url} alt='movie photo' />
+            <button onClick={() => props.selectMovie({...props})}> Select </button>
             <p>-----------------------------------------</p>
         </div>
-    )
-}   
+    );
+};   
 
-export default Movie
+export default Movie;
