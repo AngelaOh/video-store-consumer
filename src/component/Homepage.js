@@ -9,22 +9,32 @@ class Homepage extends Component {
     super();
     this.state = {
       selectedMovie: undefined,
+      selectedCustomer: undefined,
     };
   }
 
   selectMovie = movie => {
+    this.setState({ selectedMovie: movie });
+  };
 
-    this.setState({
-      selectedMovie: movie,
-    });
-
-    console.log(this.state.selectedMovie);
+  onCustomerSelect = customer => {
+    this.setState({ currentCustomer: customer });
   };
 
   navigation = () => {
     return (
       <Router>
-        {this.state.selectedMovie && <h1>The movie, {this.state.selectedMovie.title}, has been selected</h1> }
+        {this.state.selectedMovie && (
+          <h1>
+            The movie, {this.state.selectedMovie.title}, has been selected
+          </h1>
+        )}
+
+        {this.state.selectedCustomer && (
+          <h1>
+            The customer, {this.state.selectedCustomer.name}, has been selected
+          </h1>
+        )}
 
         <p>
           <Link to="/MovieSearch">Search Movies</Link>
@@ -49,10 +59,6 @@ class Homepage extends Component {
         />
       </Router>
     );
-  };
-
-  onCustomerSelect = customer => {
-    this.setState({ currentCustomer: customer });
   };
 
   render() {
