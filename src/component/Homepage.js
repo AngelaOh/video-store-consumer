@@ -25,9 +25,12 @@ class Homepage extends Component {
   displaySelected = () => {
     const { selectedMovie, selectedCustomer } = this.state;
     return (
-      (selectedMovie || selectedCustomer) && (
-        <CheckOut movie={selectedMovie} customer={selectedCustomer} />
-      )
+      <div>
+        {console.log('AAAAAHHHHHHH')}
+        {(selectedMovie || selectedCustomer) && (
+          <CheckOut movie={selectedMovie} customer={selectedCustomer} />
+        )}
+      </div>
     );
   };
 
