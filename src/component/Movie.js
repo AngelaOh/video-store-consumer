@@ -12,7 +12,7 @@ const Movie = (props) => {
             <p>Title: {props.title}</p>
             <p>Overview: {props.overview}</p>
             <p>Release Date: {props.release_date}</p>
-            <img src={props.image_url} alt='movie photo' />
+            <img src={props.image_url} alt='' />
             {props.isSearch ? addLibraryButton : selectMovieButton}
             <p>-----------------------------------------</p>
         </div>

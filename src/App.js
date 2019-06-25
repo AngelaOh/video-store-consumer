@@ -1,8 +1,4 @@
 import React, { Component } from 'react';
-
-import MovieLibrary from './component/MovieLibrary'
-
-
 import Homepage from './component/Homepage';
 import './App.css';
 
