@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Movie from './Movie'
+import Movie from './Movie';
+import PropTypes from 'prop-types';
+
 
 class MovieSearch extends React.Component {
   constructor() {
@@ -14,7 +16,6 @@ class MovieSearch extends React.Component {
 
 getMovies = () => {
   URL = 'http://localhost:3000'
-  console.log('inside axios', this.state.searchTitle)
   axios.get( URL + '/movies?query=' + this.state.searchTitle ) 
   .then((response) => {
       const movieList = response.data.map((movie) => {
@@ -84,4 +85,7 @@ getMovies = () => {
   }
 };
 
+MovieSearch.propTypes = {
+  addToLibrary: PropTypes.func
+}
 export default MovieSearch;

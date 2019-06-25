@@ -18,4 +18,12 @@ const Customer = props => {
   );
 };
 
+// Customer.PropTypes = {
+//   name: PropTypes.string,
+//   id: PropTypes.number,
+//   movies_checked_out_count: PropTypes.number,
+//   account_credit: PropTypes.number,
+//   customerSelectCallback: PropTypes.func
+// }
+
 export default Customer;

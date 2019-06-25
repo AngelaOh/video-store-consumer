@@ -2,6 +2,7 @@
 import React from 'react'
 import Movie from './Movie'
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 class MovieLibrary extends React.Component {
 
@@ -49,6 +50,11 @@ class MovieLibrary extends React.Component {
     render() {      
         return <div>{this.movieCollection()}</div>;
     }
+}
+
+MovieLibrary.propTypes = {
+    selectMovie: PropTypes.func,
+    
 }
 
 export default MovieLibrary 
