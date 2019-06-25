@@ -38,24 +38,26 @@ getMovies = () => {
   findMovie = (event) => {
     event.preventDefault();
     this.getMovies()
-    console.log('inside find movie', this.state.searchedMovies) 
+   
 
   }
 
   movieCollection = () => {
     console.log('inside movieCollection: ', this.state.searchedMovies)
     return (
-    this.state.searchedMovies.map((movie) => {
-        return (
-            < Movie 
-            key={movie.id}
-            {...movie} />
-        )
-    })
-    )
+      this.state.searchedMovies.map((movie) => {
+          return (
+              < Movie 
+              key={movie.id}
+              {...movie} />
+          )
+      })
+      )
   }
 
   render() {
+    console.log('inside render', this.state.searchedMovies) 
+
     return (
       <div>
         <h1>MOVIE SEARCH PLACE HOLDER</h1>
@@ -72,7 +74,7 @@ getMovies = () => {
             value='Search Movie' />
         </form>
 
-        {this.searchedMovies && this.movieCollection()}
+        {this.state.searchedMovies && this.movieCollection()}
 
       </div>
     )
