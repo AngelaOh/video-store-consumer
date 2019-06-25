@@ -33,18 +33,13 @@ class MovieLibrary extends React.Component {
         });
     };
 
-    selectMovie = (movie) => {
-        this.props.selectMovie(movie)
-    }
-
     movieCollection = () => {
         return (
         this.state.movieList.map((movie) => {
             return (
                 < Movie 
-                // movie={movie}
                 {...movie} 
-                selectMovie={this.selectMovie} />
+                selectMovie={this.props.selectMovie} />
             )
         })
         )
