@@ -13,8 +13,11 @@ class MovieLibrary extends React.Component {
     }
 
     componentDidMount() {
-        URL = 'http://localhost:3000'
+        this.getMovies();
+    }
 
+    getMovies = () => {
+        URL = 'http://localhost:3000'
         axios.get( URL + '/movies' ) 
         .then((response) => {
             const movieList = response.data.map((movie) => {
@@ -26,19 +29,15 @@ class MovieLibrary extends React.Component {
             this.setState ({
                 movieList: movieList
             })
-
-            console.log('state!', this.state)
         })
         .catch((error) => {
             return (
                 console.log(error.message)
             )
         })
-
     }
 
     selectMovie = (movie) => {
-        // console.log('in the movie library', movieID)
         this.props.selectMovie(movie)
     }
 
