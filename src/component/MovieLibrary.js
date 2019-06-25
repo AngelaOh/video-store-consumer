@@ -21,21 +21,17 @@ class MovieLibrary extends React.Component {
         axios.get( URL + '/movies' ) 
         .then((response) => {
             const movieList = response.data.map((movie) => {
-                return (
-                    movie
-                )
-            })
+                return movie
+            });
     
             this.setState ({
                 movieList: movieList
-            })
+            });
         })
         .catch((error) => {
-            return (
-                console.log(error.message)
-            )
-        })
-    }
+            return console.log(error.message);
+        });
+    };
 
     selectMovie = (movie) => {
         this.props.selectMovie(movie)
@@ -54,12 +50,7 @@ class MovieLibrary extends React.Component {
     }
 
     render() {      
-
-        return (
-            <div>
-              {this.movieCollection()}
-            </div>
-        )
+        return <div>{this.movieCollection()}</div>;
     }
 }
 
