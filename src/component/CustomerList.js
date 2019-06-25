@@ -48,4 +48,8 @@ class CustomerList extends Component {
   }
 }
 
+CustomerList.propTypes = {
+  customerSelectCallback: PropTypes.func
+}
+
 export default CustomerList;
