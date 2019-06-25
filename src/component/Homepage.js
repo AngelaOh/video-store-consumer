@@ -41,6 +41,11 @@ class Homepage extends Component {
     );
   };
 
+  addToLibrary = () => {
+    console.log('inside addToLibrary')
+  }
+
+
   navigation = () => {
     return (
       <Router>
@@ -54,13 +59,20 @@ class Homepage extends Component {
           <Link to="/CustomerList">Customer List</Link>
         </p>
 
-        <Route path="/MovieSearch" component={MovieSearch} />
+        <Route 
+          path="/MovieSearch" 
+          render={() => (
+            <MovieSearch addToLibrary={this.addToLibrary} />
+          )}
+        />
+
         <Route
           path="/CustomerList"
           render={() => (
             <CustomerList customerSelectCallback={this.onCustomerSelect} />
           )}
         />
+
         <Route
           path="/MovieLibrary"
           render={() => <MovieLibrary selectMovie={this.selectMovie} />}
