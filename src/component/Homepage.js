@@ -22,13 +22,14 @@ class Homepage extends Component {
     this.setState({ selectedCustomer: customer });
   };
 
-  onCheckOut = () => {};
+  onCheckOut = () => {
+    // DOING THIS NOW
+  };
 
   displaySelected = () => {
     const { selectedMovie, selectedCustomer } = this.state;
     return (
       <div>
-        {console.log('AAAAAHHHHHHH')}
         {(selectedMovie || selectedCustomer) && (
           <CheckOut
             movie={selectedMovie}
