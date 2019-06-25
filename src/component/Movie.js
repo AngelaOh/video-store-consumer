@@ -12,11 +12,20 @@ const Movie = (props) => {
             <p>Title: {props.title}</p>
             <p>Overview: {props.overview}</p>
             <p>Release Date: {props.release_date}</p>
-            <img src={props.image_url} alt='movie photo' />
+            <img src={props.image_url} alt='' />
             {props.isSearch ? addLibraryButton : selectMovieButton}
             <p>-----------------------------------------</p>
         </div>
     );
 };   
 
+Movie.propTypes = {
+    id: PropTypes.number,
+    title: PropTypes.string, 
+    overview: PropTypes.string,
+    release_date: PropTypes.string,
+    image_url: PropTypes.string,
+    addToLibrary: PropTypes.func,
+    selectMovie: PropTypes.func
+}
 export default Movie;

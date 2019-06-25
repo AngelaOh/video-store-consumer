@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 const CheckOut = ({ customer, movie, checkOutCallBack }) => {
@@ -28,11 +28,15 @@ const displayMovie = movie => {
     <article>
       <h2>Title: {movie.title} </h2>
       <p>ID: {movie.id} </p>
-      <img src={movie.image_url} alt="movie photo" />
+      <img src={movie.image_url} alt="" />
     </article>
   );
 };
 
-CheckOut.propTypes = {};
+CheckOut.propTypes = {
+  movie: PropTypes.string,
+  customer: PropTypes.string,
+  checkOutCallback: PropTypes.func
+};
 
 export default CheckOut;

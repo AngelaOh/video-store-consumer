@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Movie from './Movie'
+import Movie from './Movie';
+import PropTypes from 'prop-types';
 
-class MovieSearch extends React.Component {
+
+class MovieSearch extends Component {
   constructor() {
     super();
     this.state = {
@@ -14,7 +16,6 @@ class MovieSearch extends React.Component {
 
 getMovies = () => {
   URL = 'http://localhost:3000'
-  console.log('inside axios', this.state.searchTitle)
   axios.get( URL + '/movies?query=' + this.state.searchTitle ) 
   .then((response) => {
       const movieList = response.data.map((movie) => {
@@ -39,12 +40,9 @@ getMovies = () => {
   findMovie = (event) => {
     event.preventDefault();
     this.getMovies()
-   
-
   }
 
   movieCollection = () => {
-    console.log('inside movieCollection: ', this.state.searchedMovies)
     return (
       this.state.searchedMovies.map((movie) => {
           return (
@@ -59,8 +57,6 @@ getMovies = () => {
   }
 
   render() {
-    console.log('inside render', this.state.searchedMovies) 
-
     return (
       <div>
         <h1>MOVIE SEARCH PLACE HOLDER</h1>
@@ -78,10 +74,12 @@ getMovies = () => {
         </form>
 
         {this.state.searchedMovies && this.movieCollection()}
-
       </div>
     )
   }
 };
 
+MovieSearch.propTypes = {
+  addToLibrary: PropTypes.func
+}
 export default MovieSearch;
