@@ -4,6 +4,7 @@ import MovieLibrary from './MovieLibrary';
 import MovieSearch from './MovieSearch';
 import CustomerList from './CustomerList';
 import CheckOut from './CheckOut';
+import ErrorMessage from './ErrorMessage';
 import axios from 'axios';
 
 class Homepage extends Component {
@@ -12,8 +13,13 @@ class Homepage extends Component {
     this.state = {
       selectedMovie: undefined,
       selectedCustomer: undefined,
+      errorMessage: undefined,
     };
   }
+
+  handleErrorMessages = message => {
+    this.setState({ errorMessage: message });
+  };
 
   selectMovie = movie => {
     this.setState({ selectedMovie: movie });
@@ -46,7 +52,8 @@ class Homepage extends Component {
         console.log(response);
       })
       .catch(error => {
-        return console.log(error.response);
+        console.log(error.response);
+        this.handleErrorMessages(error.message);
       });
   };
 
@@ -66,9 +73,8 @@ class Homepage extends Component {
   };
 
   addToLibrary = () => {
-    console.log('inside addToLibrary')
-  }
-
+    console.log('inside addToLibrary');
+  };
 
   navigation = () => {
     return (
@@ -83,31 +89,44 @@ class Homepage extends Component {
           <Link to="/CustomerList">Customer List</Link>
         </p>
 
-        <Route 
-          path="/MovieSearch" 
+        <Route
+          path="/MovieSearch"
           render={() => (
-            <MovieSearch addToLibrary={this.addToLibrary} />
+            <MovieSearch
+              addToLibrary={this.addToLibrary}
+              errorCallback={this.handleErrorMessages}
+            />
           )}
         />
 
         <Route
           path="/CustomerList"
           render={() => (
-            <CustomerList customerSelectCallback={this.onCustomerSelect} />
+            <CustomerList
+              customerSelectCallback={this.onCustomerSelect}
+              errorCallback={this.handleErrorMessages}
+            />
           )}
         />
 
         <Route
           path="/MovieLibrary"
-          render={() => <MovieLibrary selectMovie={this.selectMovie} />}
+          render={() => (
+            <MovieLibrary
+              selectMovie={this.selectMovie}
+              errorCallback={this.handleErrorMessages}
+            />
+          )}
         />
       </Router>
     );
   };
 
   render() {
+    const { errorMessage } = this.state;
     return (
       <div>
+        {errorMessage && <ErrorMessage message={errorMessage} />}
         <section>{this.displaySelected()}</section>
         <section>{this.navigation()}</section>
       </div>

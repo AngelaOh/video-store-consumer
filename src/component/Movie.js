@@ -33,17 +33,13 @@ const Movie = props => {
   );
 };
 
-export default Movie;
-
-  
-
 Movie.propTypes = {
-    id: PropTypes.number,
-    title: PropTypes.string, 
-    overview: PropTypes.string,
-    release_date: PropTypes.string,
-    image_url: PropTypes.string,
-    addToLibrary: PropTypes.func,
-    selectMovie: PropTypes.func
-}
+  id: PropTypes.number,
+  title: PropTypes.string,
+  overview: PropTypes.string,
+  release_date: PropTypes.string,
+  image_url: PropTypes.string,
+  addToLibrary: PropTypes.func,
+  selectMovie: PropTypes.func,
+};
 export default Movie;
