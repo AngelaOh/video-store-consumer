@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Movie from './Movie';
 import PropTypes from 'prop-types';
+import './MovieList.css' 
 
 class MovieSearch extends Component {
   constructor() {
@@ -58,7 +59,7 @@ class MovieSearch extends Component {
   render() {
     return (
       <div>
-        <h1>MOVIE SEARCH PLACE HOLDER</h1>
+        <h1 className='search-title'>Search for Your Movie Here: </h1>
 
         <form onSubmit={this.findMovie}>
           <label htmlFor="searchTitle">Movie Search: </label>
@@ -66,8 +67,9 @@ class MovieSearch extends Component {
 
           <input type="submit" name="submit" value="Search Movie" />
         </form>
-
-        {this.state.searchedMovies && this.movieCollection()}
+        <div className='card-container'>
+          {this.state.searchedMovies && this.movieCollection()}
+        </div>
       </div>
     );
   }

@@ -5,6 +5,7 @@ import MovieSearch from './MovieSearch';
 import CustomerList from './CustomerList';
 import CheckOut from './CheckOut';
 import axios from 'axios';
+import './Homepage.css'
 
 class Homepage extends Component {
   constructor() {
@@ -30,7 +31,6 @@ class Homepage extends Component {
       due_date: new Date(Date.now() + 700000000),
     };
 
-    console.log('check out params', params)
     URL = 'http://localhost:3000';
     axios
       .post(
@@ -96,15 +96,18 @@ class Homepage extends Component {
   navigation = () => {
     return (
       <Router>
-        <p>
-          <Link to="/MovieSearch">Search Movies</Link>
-        </p>
-        <p>
-          <Link to="/MovieLibrary">Movie Library</Link>
-        </p>
-        <p>
-          <Link to="/CustomerList">Customer List</Link>
-        </p>
+        <nav className='navbar navbar-expand-lg navbar-light bg-light'>
+          <a className='navbar-brand'>Video Store</a>
+          <p>
+            <Link to="/MovieSearch">Search Movies</Link>
+          </p>
+          <p>
+            <Link to="/MovieLibrary">Movie Library</Link>
+          </p>
+          <p>
+            <Link to="/CustomerList">Customer List</Link>
+          </p>
+        </nav>
 
         <Route 
           path="/MovieSearch" 

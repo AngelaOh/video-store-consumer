@@ -23,16 +23,15 @@ const Movie = props => {
   };
 
   return (
-    <div>
-      {console.log(props)}
-      <p>ID: {props.id}</p>
-      <p>Title: {props.title}</p>
-      <p>Overview: {props.overview}</p>
-      <p>Release Date: {props.release_date}</p>
-      <img src={props.image_url} alt="movie photo" />
-      <div>{dynamicButton()}</div>
-    
-      <p>-----------------------------------------</p>
+    <div className='card bg-light mb-3'>
+      <img className='card-img-top' src={props.image_url} alt="movie photo" />
+      <div className='card-body'>
+        <p>ID: {props.id}</p>
+        <p>Title: {props.title}</p>
+        <p>Overview: {props.overview}</p>
+        <p>Release Date: {props.release_date}</p>
+        <div>{dynamicButton()}</div>
+      </div>
     </div>
   );
 };
