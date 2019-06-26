@@ -59,13 +59,11 @@ class MovieSearch extends Component {
   render() {
     return (
       <div>
-        <h1 className='search-title'>Search for Your Movie Here: </h1>
-
-        <form onSubmit={this.findMovie}>
-          <label htmlFor="searchTitle">Movie Search: </label>
+        <form className='movie-search-form' onSubmit={this.findMovie}>
+          <label className='search-title' htmlFor="searchTitle">Movie Search: </label>
           <input name="searchTitle" onChange={this.onMovieInput} />
 
-          <input type="submit" name="submit" value="Search Movie" />
+          <input className='btn btn-secondary' type="submit" name="submit" value="Search Movie" />
         </form>
         <div className='card-container'>
           {this.state.searchedMovies && this.movieCollection()}

@@ -6,12 +6,12 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 const Movie = props => {
   const addLibraryButton = (
-    <button className='btn btn-info' onClick={() => props.addToLibrary({ ...props })}>
+    <button className='btn btn-outline-success' onClick={() => props.addToLibrary({ ...props })}>
       Add to Library
     </button>
   );
   const selectMovieButton = (
-    <button className='btn btn-info' onClick={() => props.selectMovie({ ...props })}> Select </button>
+    <button className='btn btn-outline-success' onClick={() => props.selectMovie({ ...props })}> Select </button>
   );
 
   const dynamicButton = () => {

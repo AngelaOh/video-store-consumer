@@ -96,18 +96,23 @@ class Homepage extends Component {
   navigation = () => {
     return (
       <Router>
-        <nav className='navbar navbar-expand-lg navbar-light bg-light'>
-          <a className='navbar-brand'>Video Store</a>
-          <p>
-            <Link to="/MovieSearch">Search Movies</Link>
-          </p>
-          <p>
-            <Link to="/MovieLibrary">Movie Library</Link>
-          </p>
-          <p>
-            <Link to="/CustomerList">Customer List</Link>
-          </p>
+
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand" href="/">o'Hip Video Store</a>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <Link className='nav-link' to="/MovieSearch">Search Movies</Link>              </li>
+              <li class="nav-item">
+                <Link className='nav-link' to="/MovieLibrary">Movie Library</Link>
+              </li>
+              <li class="nav-item">
+                <Link className='nav-link' to="/CustomerList">Customer List</Link>
+              </li>
+            </ul>
+          </div>
         </nav>
+       
 
         <Route 
           path="/MovieSearch" 

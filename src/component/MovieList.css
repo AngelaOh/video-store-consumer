@@ -3,8 +3,15 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
+    background: rgb(40, 26, 101);
 }
 
-h1.search-title {
-    color: white;
+form.movie-search-form {
+    margin-top: 50px;
+}
+input.btn {
+    margin-left: 10px;
+}
+label.search-title {
+    margin-right: 10px;
 }
