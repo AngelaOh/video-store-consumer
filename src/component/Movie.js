@@ -36,8 +36,6 @@ const Movie = props => {
   );
 };
 
-export default Movie;
-
 Movie.propTypes = {
   id: PropTypes.number,
   title: PropTypes.string,
@@ -47,3 +45,6 @@ Movie.propTypes = {
   addToLibrary: PropTypes.func,
   selectMovie: PropTypes.func,
 };
+
+export default Movie;
+

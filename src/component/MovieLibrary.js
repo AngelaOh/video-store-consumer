@@ -13,6 +13,7 @@ class MovieLibrary extends React.Component {
   }
 
   componentDidMount() {
+    this.props.clearErrorCallback();
     this.getMovies();
   }
 
@@ -30,7 +31,8 @@ class MovieLibrary extends React.Component {
         });
       })
       .catch(error => {
-        return console.log(error.message);
+        console.log(error.message);
+        this.props.errorCallback(error.message);
       });
   };
 

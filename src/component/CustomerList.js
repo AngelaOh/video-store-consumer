@@ -23,6 +23,7 @@ class CustomerList extends Component {
   };
 
   componentDidMount() {
+    this.props.clearErrorCallback();
     this.getCustomers();
   }
 
@@ -37,9 +38,15 @@ class CustomerList extends Component {
         this.setState({
           customerList: customerList,
         });
+
+        if (customerList.length === 0) {
+          const errorMessage = 'No customers in system.';
+          this.props.errorCallback(errorMessage);
+        }
       })
       .catch(error => {
-        return console.log(error.message);
+        console.log(error.message);
+        this.props.errorCallback(error.message);
       });
   };
 
@@ -49,7 +56,7 @@ class CustomerList extends Component {
 }
 
 CustomerList.propTypes = {
-  customerSelectCallback: PropTypes.func
-}
+  customerSelectCallback: PropTypes.func,
+};
 
 export default CustomerList;

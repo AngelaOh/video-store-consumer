@@ -4,30 +4,38 @@ import Movie from './Movie';
 import PropTypes from 'prop-types';
 
 class MovieSearch extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       searchTitle: '',
       searchedMovies: undefined,
     };
   }
 
+  componentDidMount = () => {
+    this.props.clearErrorCallback();
+  };
+
   getMovies = () => {
     URL = 'http://localhost:3000';
-    console.log('inside axios', this.state.searchTitle);
     axios
       .get(URL + '/movies?query=' + this.state.searchTitle)
       .then(response => {
+        this.props.clearErrorCallback();
         const movieList = response.data.map(movie => {
           return movie;
         });
-
         this.setState({
           searchedMovies: movieList,
         });
+        if (movieList.length === 0) {
+          const errorMessage = 'No movies found.';
+          this.props.errorCallback(errorMessage);
+        }
       })
       .catch(error => {
-        return console.log(error.message);
+        console.log(error.message);
+        this.props.errorCallback(error.message);
       });
   };
 
