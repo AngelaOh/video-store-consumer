@@ -14,7 +14,6 @@ class MovieSearch extends Component {
 
   getMovies = () => {
     URL = 'http://localhost:3000';
-    console.log('inside axios', this.state.searchTitle);
     axios
       .get(URL + '/movies?query=' + this.state.searchTitle)
       .then(response => {
@@ -25,9 +24,15 @@ class MovieSearch extends Component {
         this.setState({
           searchedMovies: movieList,
         });
+
+        if (movieList.length === 0) {
+          const errorMessage = 'No movies found.';
+          this.props.errorCallback(errorMessage);
+        }
       })
       .catch(error => {
-        return console.log(error.message);
+        console.log(error.message);
+        this.props.errorCallback(error.message);
       });
   };
 
