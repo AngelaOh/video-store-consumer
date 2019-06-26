@@ -21,6 +21,10 @@ class Homepage extends Component {
     this.setState({ errorMessage: message });
   };
 
+  clearErrorMessages = () => {
+    this.setState({ errorMessage: undefined });
+  };
+
   selectMovie = movie => {
     this.setState({ selectedMovie: movie });
   };
@@ -49,6 +53,7 @@ class Homepage extends Component {
           selectedMovie: undefined,
           selectedCustomer: undefined,
         });
+        this.clearErrorMessages();
         console.log(response);
       })
       .catch(error => {
@@ -95,6 +100,7 @@ class Homepage extends Component {
             <MovieSearch
               addToLibrary={this.addToLibrary}
               errorCallback={this.handleErrorMessages}
+              clearErrorCallback={this.clearErrorMessages}
             />
           )}
         />
@@ -105,6 +111,7 @@ class Homepage extends Component {
             <CustomerList
               customerSelectCallback={this.onCustomerSelect}
               errorCallback={this.handleErrorMessages}
+              clearErrorCallback={this.clearErrorMessages}
             />
           )}
         />
@@ -115,6 +122,7 @@ class Homepage extends Component {
             <MovieLibrary
               selectMovie={this.selectMovie}
               errorCallback={this.handleErrorMessages}
+              clearErrorCallback={this.clearErrorMessages}
             />
           )}
         />

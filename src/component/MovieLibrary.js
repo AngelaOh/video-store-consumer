@@ -12,6 +12,7 @@ class MovieLibrary extends React.Component {
   }
 
   componentDidMount() {
+    this.props.clearErrorCallback();
     this.getMovies();
   }
 

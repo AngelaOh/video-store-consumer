@@ -23,6 +23,7 @@ class CustomerList extends Component {
   };
 
   componentDidMount() {
+    this.props.clearErrorCallback();
     this.getCustomers();
   }
 
