@@ -29,6 +29,8 @@ class Homepage extends Component {
       customer_id: this.state.selectedCustomer.id,
       due_date: new Date(Date.now() + 700000000),
     };
+
+    console.log('check out params', params)
     URL = 'http://localhost:3000';
     axios
       .post(
@@ -65,8 +67,35 @@ class Homepage extends Component {
     );
   };
 
-  addToLibrary = () => {
+  addToLibrary = (movie) => {
     console.log('inside addToLibrary')
+    console.log('looking at movie', movie)
+
+    const params = {
+      title: movie.title,
+      overview: movie.overview,
+      release_date: movie.release_date,
+      image_url: movie.image_url.substring(31, movie.image_url.length),
+      inventory: 10, 
+      external_id: movie.external_id
+    };
+    
+    // console.log('params image url', params['image_url'].substring(31, params['image_url'].length))
+
+    URL = 'http://localhost:3000';
+    axios
+      .post(
+        URL +
+          '/movies?',
+        params
+      )
+      .then(response => {
+        console.log('successful post add to library', response);
+      })
+      .catch(error => {
+        return console.log(error.response);
+      });
+
   }
 
 
