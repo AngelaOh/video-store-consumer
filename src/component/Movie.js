@@ -1,9 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './Movie.css'
+import 'bootstrap/dist/css/bootstrap.css';
+
 
 const Movie = props => {
   const addLibraryButton = (
-    <button onClick={() => props.addToLibrary({ ...props })}>
+    <button type='button' className='btn btn-info' onClick={() => props.addToLibrary({ ...props })}>
       Add to Library
     </button>
   );
@@ -42,4 +45,6 @@ Movie.propTypes = {
   addToLibrary: PropTypes.func,
   selectMovie: PropTypes.func,
 };
+
 export default Movie;
+

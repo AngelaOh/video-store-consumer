@@ -2,6 +2,7 @@ import React from 'react';
 import Movie from './Movie';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import './MovieLibrary.css'
 
 class MovieLibrary extends React.Component {
   constructor(props) {
