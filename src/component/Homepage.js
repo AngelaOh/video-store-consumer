@@ -68,9 +68,6 @@ class Homepage extends Component {
   };
 
   addToLibrary = (movie) => {
-    console.log('inside addToLibrary')
-    console.log('looking at movie', movie)
-
     const params = {
       title: movie.title,
       overview: movie.overview,
@@ -80,8 +77,6 @@ class Homepage extends Component {
       external_id: movie.external_id
     };
     
-    // console.log('params image url', params['image_url'].substring(31, params['image_url'].length))
-
     URL = 'http://localhost:3000';
     axios
       .post(
@@ -97,8 +92,7 @@ class Homepage extends Component {
       });
 
   }
-
-
+  
   navigation = () => {
     return (
       <Router>
