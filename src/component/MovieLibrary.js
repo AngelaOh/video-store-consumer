@@ -29,7 +29,8 @@ class MovieLibrary extends React.Component {
         });
       })
       .catch(error => {
-        return console.log(error.message);
+        console.log(error.message);
+        this.props.errorCallback(error.message);
       });
   };
 
@@ -51,13 +52,8 @@ class MovieLibrary extends React.Component {
   }
 }
 
-<<<<<<< HEAD
-export default MovieLibrary;
-=======
 MovieLibrary.propTypes = {
-    selectMovie: PropTypes.func,
-    
-}
+  selectMovie: PropTypes.func,
+};
 
-export default MovieLibrary 
->>>>>>> 42228cdeb295a4a6af015da51835ed728ea238fd
+export default MovieLibrary;
