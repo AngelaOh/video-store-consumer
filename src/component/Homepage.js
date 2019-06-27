@@ -9,7 +9,6 @@ import Welcome from './Welcome';
 import axios from 'axios';
 import './Homepage.css';
 
-
 class Homepage extends Component {
   constructor() {
     super();
@@ -117,35 +116,23 @@ class Homepage extends Component {
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <Link
-                  onClick={this.hideWelcome}
-                  className="nav-link"
-                  to="/MovieSearch"
-                >
+                <Link className="nav-link" to="/MovieSearch">
                   Search Movies
                 </Link>{' '}
               </li>
               <li class="nav-item">
-                <Link
-                  onClick={this.hideWelcome}
-                  className="nav-link"
-                  to="/MovieLibrary"
-                >
+                <Link className="nav-link" to="/MovieLibrary">
                   Movie Library
                 </Link>
               </li>
               <li class="nav-item">
-                <Link
-                  onClick={this.hideWelcome}
-                  className="nav-link"
-                  to="/CustomerList"
-                >
+                <Link className="nav-link" to="/CustomerList">
                   Customer List
                 </Link>
               </li>
             </ul>
           </div>
-        </nav
+        </nav>
 
         <Route
           path="/MovieSearch"
@@ -154,6 +141,7 @@ class Homepage extends Component {
               addToLibrary={this.addToLibrary}
               errorCallback={this.handleErrorMessages}
               clearErrorCallback={this.clearErrorMessages}
+              hideWelcomeCallback={this.hideWelcome}
             />
           )}
         />
@@ -165,6 +153,7 @@ class Homepage extends Component {
               customerSelectCallback={this.onCustomerSelect}
               errorCallback={this.handleErrorMessages}
               clearErrorCallback={this.clearErrorMessages}
+              hideWelcomeCallback={this.hideWelcome}
             />
           )}
         />
@@ -176,6 +165,7 @@ class Homepage extends Component {
               selectMovie={this.selectMovie}
               errorCallback={this.handleErrorMessages}
               clearErrorCallback={this.clearErrorMessages}
+              hideWelcomeCallback={this.hideWelcome}
             />
           )}
         />

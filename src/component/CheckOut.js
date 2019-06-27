@@ -1,7 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const CheckOut = ({ customer, movie, checkOutCallBack }) => {
+const CheckOut = ({
+  customer,
+  movie,
+  checkOutCallBack,
+  hideWelcomeCallback,
+}) => {
+  hideWelcomeCallback();
   return (
     <div>
       {customer && displayCustomer(customer)}
@@ -36,7 +42,7 @@ const displayMovie = movie => {
 CheckOut.propTypes = {
   movie: PropTypes.string,
   customer: PropTypes.string,
-  checkOutCallback: PropTypes.func
+  checkOutCallback: PropTypes.func,
 };
 
 export default CheckOut;
