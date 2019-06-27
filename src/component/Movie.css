@@ -1,10 +1,21 @@
 .card {
     width: 350px;
-    height: auto;
+    height: 530px;
 }
 
 img.card-img-top {
     width: 300px;
-    margin-left: 25px;
-    margin-right: 25px;
+    /* margin-left: 25px;
+    margin-right: 25px; */
+    margin: 25px;
+}
+
+.movie-title {
+    font-weight: bolder;
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+
+.movie-list-container {
+    margin-top: 25px;
 }
