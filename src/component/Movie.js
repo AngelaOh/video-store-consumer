@@ -6,12 +6,12 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 const Movie = props => {
   const addLibraryButton = (
-    <button type='button' className='btn btn-info' onClick={() => props.addToLibrary({ ...props })}>
+    <button className='btn btn-outline-success' onClick={() => props.addToLibrary({ ...props })}>
       Add to Library
     </button>
   );
   const selectMovieButton = (
-    <button onClick={() => props.selectMovie({ ...props })}> Select </button>
+    <button className='btn btn-outline-success' onClick={() => props.selectMovie({ ...props })}> Select </button>
   );
 
   const dynamicButton = () => {
@@ -23,15 +23,15 @@ const Movie = props => {
   };
 
   return (
-    <div>
-      {console.log(props)}
-      <p>ID: {props.id}</p>
-      <p>Title: {props.title}</p>
-      <p>Overview: {props.overview}</p>
-      <p>Release Date: {props.release_date}</p>
-      <img src={props.image_url} alt="movie photo" />
-      {dynamicButton()}
-      <p>-----------------------------------------</p>
+    <div className='card bg-light mb-3'>
+      <img className='card-img-top' src={props.image_url} alt="movie photo" />
+      <div className='card-body'>
+        <p>ID: {props.id}</p>
+        <p>Title: {props.title}</p>
+        <p>Overview: {props.overview}</p>
+        <p>Release Date: {props.release_date}</p>
+        <div>{dynamicButton()}</div>
+      </div>
     </div>
   );
 };

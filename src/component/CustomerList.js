@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Customer from './Customer';
 import axios from 'axios';
+import './CustomerList.css'
 
 class CustomerList extends Component {
   constructor(props) {
@@ -51,7 +52,7 @@ class CustomerList extends Component {
   };
 
   render() {
-    return <div>{this.customerCollection()}</div>;
+    return <div className='customer-container'>{this.customerCollection()}</div>;
   }
 }
 

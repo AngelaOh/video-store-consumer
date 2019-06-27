@@ -1,19 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './Customer.css'
 
 const Customer = props => {
   return (
-    <div>
-      <h2>
+    <div className='card bg-light mb-3'>
+      <h2 className='card-title'>
         {props.name} ID: {props.id}
       </h2>
-      <p>Number of movies checked out: {props.movies_checked_out_count}</p>
-      <p>Account credit: {props.account_credit}</p>
-      <button onClick={() => props.customerSelectCallback({ ...props })}>
-        SELECT
-      </button>
-      <br />
-      -----------------------------------------
+      <div className='card-body'>
+        <p>Number of movies checked out: {props.movies_checked_out_count}</p>
+        <p>Account credit: {props.account_credit}</p>
+        <button className='btn btn-outline-success' onClick={() => props.customerSelectCallback({ ...props })}>
+          SELECT
+        </button>
+      </div>
     </div>
   );
 };
