@@ -26,6 +26,8 @@ class CustomerList extends Component {
   componentDidMount() {
     this.props.clearErrorCallback();
     this.props.hideWelcomeCallback();
+    this.props.addLibraryCallback();
+    this.props.hideLibraryCallback();
     this.getCustomers();
   }
 
