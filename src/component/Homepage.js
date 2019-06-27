@@ -5,8 +5,9 @@ import MovieSearch from './MovieSearch';
 import CustomerList from './CustomerList';
 import CheckOut from './CheckOut';
 import ErrorMessage from './ErrorMessage';
+import Welcome from './Welcome';
 import axios from 'axios';
-import './Homepage.css'
+import './Homepage.css';
 
 class Homepage extends Component {
   constructor() {
@@ -15,8 +16,13 @@ class Homepage extends Component {
       selectedMovie: undefined,
       selectedCustomer: undefined,
       errorMessage: undefined,
+      showWelcome: true,
     };
   }
+
+  hideWelcome = () => {
+    this.setState({ showWelcome: false });
+  };
 
   handleErrorMessages = message => {
     this.setState({ errorMessage: message });
@@ -79,51 +85,54 @@ class Homepage extends Component {
     );
   };
 
-  addToLibrary = (movie) => {
+  addToLibrary = movie => {
     const params = {
       title: movie.title,
       overview: movie.overview,
       release_date: movie.release_date,
       image_url: movie.image_url.substring(31, movie.image_url.length),
-      inventory: 10, 
-      external_id: movie.external_id
+      inventory: 10,
+      external_id: movie.external_id,
     };
-    
+
     URL = 'http://localhost:3000';
     axios
-      .post(
-        URL +
-          '/movies?',
-        params
-      )
+      .post(URL + '/movies?', params)
       .then(response => {
         console.log('successful post add to library', response);
       })
       .catch(error => {
         return console.log(error.response);
       });
-  }
-  
+  };
+
   navigation = () => {
     return (
       <Router>
-
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <a class="navbar-brand" href="/">o'Hip Video Store</a>
+          <a class="navbar-brand" href="/">
+            o'Hip Video Store
+          </a>
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <Link className='nav-link' to="/MovieSearch">Search Movies</Link>              </li>
-              <li class="nav-item">
-                <Link className='nav-link' to="/MovieLibrary">Movie Library</Link>
+                <Link className="nav-link" to="/MovieSearch">
+                  Search Movies
+                </Link>{' '}
               </li>
               <li class="nav-item">
-                <Link className='nav-link' to="/CustomerList">Customer List</Link>
+                <Link className="nav-link" to="/MovieLibrary">
+                  Movie Library
+                </Link>
+              </li>
+              <li class="nav-item">
+                <Link className="nav-link" to="/CustomerList">
+                  Customer List
+                </Link>
               </li>
             </ul>
           </div>
         </nav>
-       
 
         <Route
           path="/MovieSearch"
@@ -132,6 +141,7 @@ class Homepage extends Component {
               addToLibrary={this.addToLibrary}
               errorCallback={this.handleErrorMessages}
               clearErrorCallback={this.clearErrorMessages}
+              hideWelcomeCallback={this.hideWelcome}
             />
           )}
         />
@@ -143,6 +153,7 @@ class Homepage extends Component {
               customerSelectCallback={this.onCustomerSelect}
               errorCallback={this.handleErrorMessages}
               clearErrorCallback={this.clearErrorMessages}
+              hideWelcomeCallback={this.hideWelcome}
             />
           )}
         />
@@ -154,6 +165,7 @@ class Homepage extends Component {
               selectMovie={this.selectMovie}
               errorCallback={this.handleErrorMessages}
               clearErrorCallback={this.clearErrorMessages}
+              hideWelcomeCallback={this.hideWelcome}
             />
           )}
         />
@@ -162,12 +174,13 @@ class Homepage extends Component {
   };
 
   render() {
-    const { errorMessage } = this.state;
+    const { errorMessage, showWelcome } = this.state;
     return (
       <div>
         {errorMessage && <ErrorMessage message={errorMessage} />}
         <section>{this.displaySelected()}</section>
         <section>{this.navigation()}</section>
+        {showWelcome && <Welcome />}
       </div>
     );
   }

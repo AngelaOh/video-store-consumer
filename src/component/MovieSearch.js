@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Movie from './Movie';
 import PropTypes from 'prop-types';
-import './MovieList.css' 
+import './MovieList.css';
 
 class MovieSearch extends Component {
   constructor(props) {
@@ -15,6 +15,7 @@ class MovieSearch extends Component {
 
   componentDidMount = () => {
     this.props.clearErrorCallback();
+    this.props.hideWelcomeCallback();
   };
 
   getMovies = () => {
@@ -67,13 +68,20 @@ class MovieSearch extends Component {
   render() {
     return (
       <div>
-        <form className='movie-search-form' onSubmit={this.findMovie}>
-          <label className='search-title' htmlFor="searchTitle">Movie Search: </label>
+        <form className="movie-search-form" onSubmit={this.findMovie}>
+          <label className="search-title" htmlFor="searchTitle">
+            Movie Search:{' '}
+          </label>
           <input name="searchTitle" onChange={this.onMovieInput} />
 
-          <input className='btn btn-secondary' type="submit" name="submit" value="Search Movie" />
+          <input
+            className="btn btn-secondary"
+            type="submit"
+            name="submit"
+            value="Search Movie"
+          />
         </form>
-        <div className='card-container'>
+        <div className="card-container">
           {this.state.searchedMovies && this.movieCollection()}
         </div>
       </div>

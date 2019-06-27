@@ -36,7 +36,7 @@ const displayMovie = movie => {
 CheckOut.propTypes = {
   movie: PropTypes.string,
   customer: PropTypes.string,
-  checkOutCallback: PropTypes.func
+  checkOutCallback: PropTypes.func,
 };
 
 export default CheckOut;

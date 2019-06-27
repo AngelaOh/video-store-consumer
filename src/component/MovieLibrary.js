@@ -2,7 +2,7 @@ import React from 'react';
 import Movie from './Movie';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import './MovieList.css'
+import './MovieList.css';
 
 class MovieLibrary extends React.Component {
   constructor(props) {
@@ -14,6 +14,7 @@ class MovieLibrary extends React.Component {
 
   componentDidMount() {
     this.props.clearErrorCallback();
+    this.props.hideWelcomeCallback();
     this.getMovies();
   }
 
@@ -50,7 +51,7 @@ class MovieLibrary extends React.Component {
   };
 
   render() {
-    return <div className='card-container'>{this.movieCollection()}</div>;
+    return <div className="card-container">{this.movieCollection()}</div>;
   }
 }
 
