@@ -5,6 +5,7 @@ import MovieSearch from './MovieSearch';
 import CustomerList from './CustomerList';
 import CheckOut from './CheckOut';
 import Alert from './Alert';
+import LibraryMessage from './LibraryMessage'
 import Welcome from './Welcome';
 import axios from 'axios';
 import './Homepage.css';
@@ -16,6 +17,7 @@ class Homepage extends Component {
       selectedMovie: undefined,
       selectedCustomer: undefined,
       errorMessage: undefined,
+      addToLibraryMessage: undefined,
       showWelcome: true,
     };
   }
@@ -31,6 +33,14 @@ class Homepage extends Component {
   clearErrorMessages = () => {
     this.setState({ errorMessage: undefined });
   };
+
+  handleAddToLibrary = (message) => {
+    this.setState({addToLibraryMessage: message})
+  }
+
+  clearAddToLibrary = () => {
+    this.setState({addToLibraryMessage: undefined})
+  }
 
   selectMovie = movie => {
     this.setState({ selectedMovie: movie });
@@ -100,10 +110,12 @@ class Homepage extends Component {
       .post(URL + '/movies?', params)
       .then(response => {
         console.log('successful post add to library', response);
+        this.handleAddToLibrary(`${movie.title} has been added to library`)
       })
       .catch(error => {
         return console.log(error.response);
       });
+    this.clearAddToLibrary()
   };
 
   navigation = () => {
@@ -137,6 +149,9 @@ class Homepage extends Component {
         {this.state.errorMessage && (
           <Alert message={this.state.errorMessage} type="alert alert-danger" />
         )}
+        {this.state.addToLibraryMessage && (
+          <LibraryMessage message={this.state.addToLibraryMessage} />
+        )}
         <section>{this.displaySelected()}</section>
 
         <Route
@@ -146,6 +161,8 @@ class Homepage extends Component {
               addToLibrary={this.addToLibrary}
               errorCallback={this.handleErrorMessages}
               clearErrorCallback={this.clearErrorMessages}
+              addLibraryCallback={this.handleAddToLibrary}
+              hideLibraryCallback={this.clearAddToLibrary}
               hideWelcomeCallback={this.hideWelcome}
             />
           )}
@@ -158,6 +175,8 @@ class Homepage extends Component {
               customerSelectCallback={this.onCustomerSelect}
               errorCallback={this.handleErrorMessages}
               clearErrorCallback={this.clearErrorMessages}
+              addLibraryCallback={this.handleAddToLibrary}
+              hideLibraryCallback={this.clearAddToLibrary}
               hideWelcomeCallback={this.hideWelcome}
             />
           )}
@@ -170,6 +189,8 @@ class Homepage extends Component {
               selectMovie={this.selectMovie}
               errorCallback={this.handleErrorMessages}
               clearErrorCallback={this.clearErrorMessages}
+              addLibraryCallback={this.handleAddToLibrary}
+              hideLibraryCallback={this.clearAddToLibrary}
               hideWelcomeCallback={this.hideWelcome}
             />
           )}

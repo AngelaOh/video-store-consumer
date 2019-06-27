@@ -10,6 +10,9 @@ const Movie = props => {
       Add to Library
     </button>
   );
+  const inLibraryMessage = (
+    <div className='badge badge-secondary'>In Movie Library</div>
+  )
   const selectMovieButton = (
     <button className='btn btn-outline-success' onClick={() => props.selectMovie({ ...props })}> Select </button>
   );
@@ -19,6 +22,8 @@ const Movie = props => {
       return selectMovieButton;
     } else if (!props.in_library) {
       return addLibraryButton;
+    } else {
+      return inLibraryMessage;
     }
   };
 
