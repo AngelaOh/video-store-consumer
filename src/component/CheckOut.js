@@ -1,13 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const CheckOut = ({
-  customer,
-  movie,
-  checkOutCallBack,
-  hideWelcomeCallback,
-}) => {
-  hideWelcomeCallback();
+const CheckOut = ({ customer, movie, checkOutCallBack }) => {
   return (
     <div>
       {customer && displayCustomer(customer)}
