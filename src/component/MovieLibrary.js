@@ -2,7 +2,7 @@ import React from 'react';
 import Movie from './Movie';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import './MovieLibrary.css'
+import './MovieList.css'
 
 class MovieLibrary extends React.Component {
   constructor(props) {
@@ -50,7 +50,7 @@ class MovieLibrary extends React.Component {
   };
 
   render() {
-    return <div>{this.movieCollection()}</div>;
+    return <div className='card-container'>{this.movieCollection()}</div>;
   }
 }
 

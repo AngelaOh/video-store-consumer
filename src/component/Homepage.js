@@ -5,7 +5,9 @@ import MovieSearch from './MovieSearch';
 import CustomerList from './CustomerList';
 import CheckOut from './CheckOut';
 import ErrorMessage from './ErrorMessage';
+import Welcome from './Welcome';
 import axios from 'axios';
+import './Homepage.css';
 
 class Homepage extends Component {
   constructor() {
@@ -14,8 +16,13 @@ class Homepage extends Component {
       selectedMovie: undefined,
       selectedCustomer: undefined,
       errorMessage: undefined,
+      showWelcome: true,
     };
   }
+
+  hideWelcome = () => {
+    this.setState({ showWelcome: false });
+  };
 
   handleErrorMessages = message => {
     this.setState({ errorMessage: message });
@@ -40,7 +47,6 @@ class Homepage extends Component {
       due_date: new Date(Date.now() + 700000000),
     };
 
-    console.log('check out params', params);
     URL = 'http://localhost:3000';
     axios
       .post(
@@ -103,15 +109,42 @@ class Homepage extends Component {
   navigation = () => {
     return (
       <Router>
-        <p>
-          <Link to="/MovieSearch">Search Movies</Link>
-        </p>
-        <p>
-          <Link to="/MovieLibrary">Movie Library</Link>
-        </p>
-        <p>
-          <Link to="/CustomerList">Customer List</Link>
-        </p>
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand" href="/">
+            o'Hip Video Store
+          </a>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <Link
+                  onClick={this.hideWelcome}
+                  className="nav-link"
+                  to="/MovieSearch"
+                >
+                  Search Movies
+                </Link>{' '}
+              </li>
+              <li class="nav-item">
+                <Link
+                  onClick={this.hideWelcome}
+                  className="nav-link"
+                  to="/MovieLibrary"
+                >
+                  Movie Library
+                </Link>
+              </li>
+              <li class="nav-item">
+                <Link
+                  onClick={this.hideWelcome}
+                  className="nav-link"
+                  to="/CustomerList"
+                >
+                  Customer List
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </nav>
 
         <Route
           path="/MovieSearch"
@@ -150,12 +183,13 @@ class Homepage extends Component {
   };
 
   render() {
-    const { errorMessage } = this.state;
+    const { errorMessage, showWelcome } = this.state;
     return (
       <div>
         {errorMessage && <ErrorMessage message={errorMessage} />}
         <section>{this.displaySelected()}</section>
         <section>{this.navigation()}</section>
+        {showWelcome && <Welcome />}
       </div>
     );
   }

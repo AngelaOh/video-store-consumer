@@ -1,3 +1,10 @@
-.bootstrap_button {
-    /* background: blue; */
+.card {
+    width: 350px;
+    height: auto;
+}
+
+img.card-img-top {
+    width: 300px;
+    margin-left: 25px;
+    margin-right: 25px;
 }
