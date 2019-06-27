@@ -40,7 +40,7 @@ class Homepage extends Component {
       due_date: new Date(Date.now() + 700000000),
     };
 
-    console.log('check out params', params)
+    console.log('check out params', params);
     URL = 'http://localhost:3000';
     axios
       .post(
@@ -79,31 +79,27 @@ class Homepage extends Component {
     );
   };
 
-  addToLibrary = (movie) => {
+  addToLibrary = movie => {
     const params = {
       title: movie.title,
       overview: movie.overview,
       release_date: movie.release_date,
       image_url: movie.image_url.substring(31, movie.image_url.length),
-      inventory: 10, 
-      external_id: movie.external_id
+      inventory: 10,
+      external_id: movie.external_id,
     };
-    
+
     URL = 'http://localhost:3000';
     axios
-      .post(
-        URL +
-          '/movies?',
-        params
-      )
+      .post(URL + '/movies?', params)
       .then(response => {
         console.log('successful post add to library', response);
       })
       .catch(error => {
         return console.log(error.response);
       });
-  }
-  
+  };
+
   navigation = () => {
     return (
       <Router>
