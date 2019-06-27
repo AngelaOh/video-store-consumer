@@ -137,6 +137,7 @@ class Homepage extends Component {
         {this.state.errorMessage && (
           <ErrorMessage message={this.state.errorMessage} />
         )}
+        <section>{this.displaySelected()}</section>
 
         <Route
           path="/MovieSearch"
@@ -182,7 +183,6 @@ class Homepage extends Component {
     return (
       <div>
         <section>{this.navigation()}</section>
-        <section>{this.displaySelected()}</section>
         {showWelcome && <Welcome />}
       </div>
     );
