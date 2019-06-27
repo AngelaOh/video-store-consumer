@@ -134,6 +134,10 @@ class Homepage extends Component {
           </div>
         </nav>
 
+        {this.state.errorMessage && (
+          <ErrorMessage message={this.state.errorMessage} />
+        )}
+
         <Route
           path="/MovieSearch"
           render={() => (
@@ -177,9 +181,8 @@ class Homepage extends Component {
     const { errorMessage, showWelcome } = this.state;
     return (
       <div>
-        {errorMessage && <ErrorMessage message={errorMessage} />}
-        <section>{this.displaySelected()}</section>
         <section>{this.navigation()}</section>
+        <section>{this.displaySelected()}</section>
         {showWelcome && <Welcome />}
       </div>
     );
