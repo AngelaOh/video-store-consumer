@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ErrorMessage = ({ message }) => {
+const Alert = ({ message, type }) => {
   return (
-    <div className="alert alert-danger">
+    <div className={type}>
       <p>Error: {message}</p>
     </div>
   );
 };
 
-export default ErrorMessage;
+export default Alert;

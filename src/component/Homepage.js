@@ -4,7 +4,7 @@ import MovieLibrary from './MovieLibrary';
 import MovieSearch from './MovieSearch';
 import CustomerList from './CustomerList';
 import CheckOut from './CheckOut';
-import ErrorMessage from './ErrorMessage';
+import Alert from './Alert';
 import Welcome from './Welcome';
 import axios from 'axios';
 import './Homepage.css';
@@ -135,7 +135,7 @@ class Homepage extends Component {
         </nav>
 
         {this.state.errorMessage && (
-          <ErrorMessage message={this.state.errorMessage} />
+          <Alert message={this.state.errorMessage} type="alert alert-danger" />
         )}
         <section>{this.displaySelected()}</section>
 
