@@ -9,6 +9,7 @@ import Welcome from './Welcome';
 import axios from 'axios';
 import './Homepage.css';
 
+
 class Homepage extends Component {
   constructor() {
     super();
@@ -144,7 +145,7 @@ class Homepage extends Component {
               </li>
             </ul>
           </div>
-        </nav>
+        </nav
 
         <Route
           path="/MovieSearch"
