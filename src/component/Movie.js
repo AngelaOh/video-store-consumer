@@ -33,9 +33,9 @@ class Movie extends React.Component {
     </button>
   );
 
-  inLibraryMessage = <div className="btn btn-danger">In Movie Library</div>;
+  inLibraryMessage = <Button variant='danger' disabled> In Movie Library</Button>;
 
-  selectedMovieMessage = <div className="btn btn-danger">Movie Selected</div>;
+  selectedMovieMessage = <Button variant="danger" disabled>Movie Selected</Button>;
 
   selectMovieButton = (
     <button
