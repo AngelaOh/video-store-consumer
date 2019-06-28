@@ -28,7 +28,9 @@ class MovieSearch extends Component {
           return movie;
         });
         movieList = movieList.sort((a, b) => {
-          return a.title.localeCompare(b.title);
+          if (a && b) {
+            return a.title < b.title ? -1 : a.title > b.title ? 1 : 0;
+          }
         });
         this.setState({
           searchedMovies: movieList,
