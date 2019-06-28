@@ -28,12 +28,8 @@ class MovieLibrary extends React.Component {
           return movie;
         });
 
-        movieList = movieList.sort((a, b) => {
-          if (a && b) {
-            return a.title < b.title ? -1 : a.title > b.title ? 1 : 0;
-          }
-        });
-
+       movieList = movieList.reverse()
+       
         this.setState({
           movieList: movieList,
         });
