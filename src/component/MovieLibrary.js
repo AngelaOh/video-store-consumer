@@ -28,7 +28,7 @@ class MovieLibrary extends React.Component {
           return movie;
         });
         movieList = movieList.sort((a, b) => {
-          return a.title.localeCompare(b.title);
+          // return a.title.localeCompare(b.title);
         });
 
         this.setState({
