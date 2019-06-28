@@ -24,6 +24,7 @@ class MovieLibrary extends React.Component {
       .get(URL + '/movies')
       .then(response => {
         const movieList = response.data.map(movie => {
+          movie.selected = false;
           return movie;
         });
 

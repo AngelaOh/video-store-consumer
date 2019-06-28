@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/Button';
 class Movie extends React.Component {
   constructor(props, context) {
     super(props, context);
-
+    console.log(props);
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
 
