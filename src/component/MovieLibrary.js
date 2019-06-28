@@ -12,13 +12,11 @@ class MovieLibrary extends React.Component {
     };
   }
 
-  componentDidMount() {
-    this.props.clearErrorCallback();
+  componentDidMount = () => {
+    this.props.alertCallback('', '');
     this.props.hideWelcomeCallback();
-    this.props.addLibraryCallback();
-    this.props.hideLibraryCallback();
     this.getMovies();
-  }
+  };
 
   getMovies = () => {
     URL = 'http://localhost:3000';
@@ -35,7 +33,7 @@ class MovieLibrary extends React.Component {
       })
       .catch(error => {
         console.log(error.message);
-        this.props.errorCallback(error.message);
+        this.props.alertCallback(error.message, 'danger');
       });
   };
 

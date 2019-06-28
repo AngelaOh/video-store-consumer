@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './CheckOut.css';
+import Alert from './Alert';
 
 const CheckOut = ({ customer, movie, checkOutCallBack }) => {
   return (
@@ -8,7 +9,7 @@ const CheckOut = ({ customer, movie, checkOutCallBack }) => {
       {customer && displayCustomer(customer)}
       {movie && displayMovie(movie)}
       {customer && movie && (
-        <button className="btn btn-primary" onClick={() => checkOutCallBack()}>
+        <button className="btn btn-primary" onClick={checkOutCallBack}>
           Check Out Movie
         </button>
       )}

@@ -4,8 +4,7 @@ import MovieLibrary from './MovieLibrary';
 import MovieSearch from './MovieSearch';
 import CustomerList from './CustomerList';
 import CheckOut from './CheckOut';
-import ErrorMessage from './ErrorMessage';
-import LibraryMessage from './LibraryMessage'
+import Alert from './Alert';
 import Welcome from './Welcome';
 import axios from 'axios';
 import './Homepage.css';
@@ -16,8 +15,7 @@ class Homepage extends Component {
     this.state = {
       selectedMovie: undefined,
       selectedCustomer: undefined,
-      errorMessage: undefined,
-      addToLibraryMessage: undefined,
+      messageAlert: { text: '', type: '' },
       showWelcome: true,
     };
   }
@@ -26,27 +24,20 @@ class Homepage extends Component {
     this.setState({ showWelcome: false });
   };
 
-  handleErrorMessages = message => {
-    this.setState({ errorMessage: message });
+  handleMessageAlerts = (text, type) => {
+    this.setState({ messageAlert: { text: text, type: type } });
   };
-
-  clearErrorMessages = () => {
-    this.setState({ errorMessage: undefined });
-  };
-
-  handleAddToLibrary = (message) => {
-    this.setState({addToLibraryMessage: message})
-  }
-
-  clearAddToLibrary = () => {
-    this.setState({addToLibraryMessage: undefined})
-  }
-
   selectMovie = movie => {
+    if (this.state.messageAlert.text) {
+      this.handleMessageAlerts('', '');
+    }
     this.setState({ selectedMovie: movie });
   };
 
   onCustomerSelect = customer => {
+    if (this.state.messageAlert.text) {
+      this.handleMessageAlerts('', '');
+    }
     this.setState({ selectedCustomer: customer });
   };
 
@@ -67,16 +58,20 @@ class Homepage extends Component {
         params
       )
       .then(response => {
+        this.handleMessageAlerts(
+          `The movie, ${
+            this.state.selectedMovie.title
+          }, has been checked out to ${this.state.selectedCustomer.name}.`,
+          'success'
+        );
         this.setState({
           selectedMovie: undefined,
           selectedCustomer: undefined,
         });
-        this.clearErrorMessages();
-        console.log(response);
       })
       .catch(error => {
         console.log(error.response);
-        this.handleErrorMessages(error.message);
+        this.handleMessageAlerts(error.response, 'danger');
       });
   };
 
@@ -110,34 +105,39 @@ class Homepage extends Component {
       .post(URL + '/movies?', params)
       .then(response => {
         console.log('successful post add to library', response);
-        this.handleAddToLibrary(`${movie.title} has been added to library`)
+        this.handleMessageAlerts(
+          `${movie.title} has been added to library`,
+          'success'
+        );
       })
       .catch(error => {
-        return console.log(error.response);
+        console.log(error.response);
+        if (error.response.data.errors) {
+          this.handleMessageAlerts(error.response.data.errors, 'danger');
+        }
       });
-    this.clearAddToLibrary()
   };
 
   navigation = () => {
     return (
       <Router>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <a class="navbar-brand" href="/">
+          <a className="navbar-brand" href="/">
             o'Hip Video Store
           </a>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav">
+              <li className="nav-item">
                 <Link className="nav-link" to="/MovieSearch">
                   Search Movies
                 </Link>{' '}
               </li>
-              <li class="nav-item">
+              <li className="nav-item">
                 <Link className="nav-link" to="/MovieLibrary">
                   Movie Library
                 </Link>
               </li>
-              <li class="nav-item">
+              <li className="nav-item">
                 <Link className="nav-link" to="/CustomerList">
                   Customer List
                 </Link>
@@ -145,52 +145,34 @@ class Homepage extends Component {
             </ul>
           </div>
         </nav>
-
-        {this.state.errorMessage && (
-          <ErrorMessage message={this.state.errorMessage} />
-        )}
-        {this.state.addToLibraryMessage && (
-          <LibraryMessage message={this.state.addToLibraryMessage} />
-        )}
+        {this.state.messageAlert.text && <Alert {...this.state.messageAlert} />}
         <section>{this.displaySelected()}</section>
-
         <Route
           path="/MovieSearch"
           render={() => (
             <MovieSearch
               addToLibrary={this.addToLibrary}
-              errorCallback={this.handleErrorMessages}
-              clearErrorCallback={this.clearErrorMessages}
-              addLibraryCallback={this.handleAddToLibrary}
-              hideLibraryCallback={this.clearAddToLibrary}
+              alertCallback={this.handleMessageAlerts}
               hideWelcomeCallback={this.hideWelcome}
             />
           )}
         />
-
         <Route
           path="/CustomerList"
           render={() => (
             <CustomerList
               customerSelectCallback={this.onCustomerSelect}
-              errorCallback={this.handleErrorMessages}
-              clearErrorCallback={this.clearErrorMessages}
-              addLibraryCallback={this.handleAddToLibrary}
-              hideLibraryCallback={this.clearAddToLibrary}
+              alertCallback={this.handleMessageAlerts}
               hideWelcomeCallback={this.hideWelcome}
             />
           )}
         />
-
         <Route
           path="/MovieLibrary"
           render={() => (
             <MovieLibrary
               selectMovie={this.selectMovie}
-              errorCallback={this.handleErrorMessages}
-              clearErrorCallback={this.clearErrorMessages}
-              addLibraryCallback={this.handleAddToLibrary}
-              hideLibraryCallback={this.clearAddToLibrary}
+              alertCallback={this.handleMessageAlerts}
               hideWelcomeCallback={this.hideWelcome}
             />
           )}
@@ -200,7 +182,7 @@ class Homepage extends Component {
   };
 
   render() {
-    const { errorMessage, showWelcome } = this.state;
+    const { showWelcome } = this.state;
     return (
       <div>
         <section>{this.navigation()}</section>
