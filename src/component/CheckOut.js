@@ -4,7 +4,6 @@ import './CheckOut.css';
 import Alert from './Alert';
 
 const CheckOut = ({ customer, movie, checkOutCallBack }) => {
-  let showSuccessAlert = undefined;
   return (
     <div className="checkoutContainer jumbotron jumbotron-fluid">
       {customer && displayCustomer(customer)}
