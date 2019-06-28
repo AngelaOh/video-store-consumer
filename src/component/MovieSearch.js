@@ -14,16 +14,16 @@ class MovieSearch extends Component {
   }
 
   componentDidMount = () => {
-    this.props.clearErrorCallback();
+    this.props.alertCallback('', '');
     this.props.hideWelcomeCallback();
   };
 
   getMovies = () => {
     URL = 'http://localhost:3000';
+    this.props.alertCallback('', '');
     axios
       .get(URL + '/movies?query=' + this.state.searchTitle)
       .then(response => {
-        this.props.clearErrorCallback();
         const movieList = response.data.map(movie => {
           return movie;
         });
@@ -32,12 +32,12 @@ class MovieSearch extends Component {
         });
         if (movieList.length === 0) {
           const errorMessage = 'No movies found.';
-          this.props.errorCallback(errorMessage);
+          this.props.alertCallback(errorMessage, 'danger');
         }
       })
       .catch(error => {
         console.log(error.message);
-        this.props.errorCallback(error.message);
+        this.props.alertCallback(error.message, 'danger');
       });
   };
 

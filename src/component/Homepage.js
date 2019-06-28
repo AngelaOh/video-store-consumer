@@ -5,7 +5,6 @@ import MovieSearch from './MovieSearch';
 import CustomerList from './CustomerList';
 import CheckOut from './CheckOut';
 import Alert from './Alert';
-import LibraryMessage from './LibraryMessage';
 import Welcome from './Welcome';
 import axios from 'axios';
 import './Homepage.css';
@@ -58,7 +57,7 @@ class Homepage extends Component {
           selectedCustomer: undefined,
         });
 
-        this.handleMessageAlerts('Movie checked out', 'Success');
+        this.handleMessageAlerts('Movie checked out', 'success');
       })
       .catch(error => {
         console.log(error.response);
