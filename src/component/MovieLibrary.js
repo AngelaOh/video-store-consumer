@@ -23,9 +23,12 @@ class MovieLibrary extends React.Component {
     axios
       .get(URL + '/movies')
       .then(response => {
-        const movieList = response.data.map(movie => {
+        let movieList = response.data.map(movie => {
           movie.selected = false;
           return movie;
+        });
+        movieList = movieList.sort((a, b) => {
+          return a.title.localeCompare(b.title);
         });
 
         this.setState({

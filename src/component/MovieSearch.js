@@ -24,8 +24,11 @@ class MovieSearch extends Component {
     axios
       .get(URL + '/movies?query=' + this.state.searchTitle)
       .then(response => {
-        const movieList = response.data.map(movie => {
+        let movieList = response.data.map(movie => {
           return movie;
+        });
+        movieList = movieList.sort((a, b) => {
+          return a.title.localeCompare(b.title);
         });
         this.setState({
           searchedMovies: movieList,
