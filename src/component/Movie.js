@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/Button';
 class Movie extends React.Component {
   constructor(props, context) {
     super(props, context);
-
+    console.log(props);
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
 
@@ -32,11 +32,15 @@ class Movie extends React.Component {
       Add to Library
     </button>
   );
+
   inLibraryMessage = <div className="btn btn-danger">In Movie Library</div>;
+
+  selectedMovieMessage = <div className="btn btn-danger">Movie Selected</div>;
+
   selectMovieButton = (
     <button
       className="btn btn-outline-success"
-      onClick={() => this.props.movieSelectCallback({ ...this.props })}
+      onClick={() => this.props.handleMovieSelectCallback({ ...this.props })}
     >
       {' '}
       Select{' '}
@@ -44,7 +48,9 @@ class Movie extends React.Component {
   );
 
   dynamicButton = () => {
-    if (this.props.selectable) {
+    if (this.props.selected) {
+      return this.selectedMovieMessage;
+    } else if (this.props.selectable) {
       return this.selectMovieButton;
     } else if (!this.props.in_library) {
       return this.addLibraryButton;
