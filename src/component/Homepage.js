@@ -17,6 +17,7 @@ class Homepage extends Component {
       selectedCustomer: undefined,
       messageAlert: { text: '', type: '' },
       showWelcome: true,
+      updateCustomer: undefined,
     };
   }
 
@@ -27,6 +28,7 @@ class Homepage extends Component {
   handleMessageAlerts = (text, type) => {
     this.setState({ messageAlert: { text: text, type: type } });
   };
+
   onMovieSelect = movie => {
     if (this.state.messageAlert.text) {
       this.handleMessageAlerts('', '');
@@ -64,7 +66,9 @@ class Homepage extends Component {
           }, has been checked out to ${this.state.selectedCustomer.name}.`,
           'success'
         );
+
         this.setState({
+          updateCustomer: this.state.selectedCustomer,
           selectedMovie: undefined,
           selectedCustomer: undefined,
         });
@@ -164,6 +168,7 @@ class Homepage extends Component {
               customerSelectCallback={this.onCustomerSelect}
               alertCallback={this.handleMessageAlerts}
               hideWelcomeCallback={this.hideWelcome}
+              updateCustomer={this.state.updateCustomer}
             />
           )}
         />

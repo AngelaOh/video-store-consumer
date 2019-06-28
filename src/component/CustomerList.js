@@ -23,6 +23,11 @@ class CustomerList extends Component {
     });
   };
 
+  onUpdateCustomer = () => {
+    let {updateCustomer} =  this.props
+    if {}
+  }
+
   componentDidMount = () => {
     this.props.alertCallback('', '');
     this.props.hideWelcomeCallback();
