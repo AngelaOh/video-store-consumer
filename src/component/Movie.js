@@ -49,7 +49,7 @@ class Movie extends React.Component {
   render() {
     return (
           <div className='movie-list-container'>
-          <div className='card bg-light mb-3' type='button' variant="primary" onClick={this.handleShow}>
+          <div className='movie-card-container card bg-light mb-3' type='button' variant="primary" onClick={this.handleShow}>
             <p className='movie-title'>{this.props.title}</p>
             <img className='card-img-top' src={this.props.image_url} alt="movie photo" />
           </div>

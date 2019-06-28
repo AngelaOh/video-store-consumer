@@ -1,12 +1,10 @@
-.card {
+div.movie-card-container {
     width: 350px;
     height: 530px;
 }
 
 img.card-img-top {
     width: 300px;
-    /* margin-left: 25px;
-    margin-right: 25px; */
     margin: 25px;
 }
 
