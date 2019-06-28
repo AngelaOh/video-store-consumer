@@ -4,7 +4,7 @@ import './Customer.css'
 
 const Customer = props => {
   return (
-    <div className='card bg-light mb-3'>
+    <div className='customer-card card bg-light mb-3'>
       <h2 className='card-title'>
         {props.name} ID: {props.id}
       </h2>
