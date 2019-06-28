@@ -27,7 +27,7 @@ class Movie extends React.Component {
   addLibraryButton = (
     <button
       className="btn btn-outline-success"
-      onClick={() => this.props.addToLibraryCallBack({ ...this.props })}
+      onClick={() => this.props.handleAddedToLibraryCallback({ ...this.props })}
     >
       Add to Library
     </button>
@@ -36,7 +36,7 @@ class Movie extends React.Component {
   selectMovieButton = (
     <button
       className="btn btn-outline-success"
-      onClick={() => this.props.selectMovie({ ...this.props })}
+      onClick={() => this.props.movieSelectCallback({ ...this.props })}
     >
       {' '}
       Select{' '}
@@ -98,8 +98,10 @@ Movie.propTypes = {
   release_date: PropTypes.string,
   image_url: PropTypes.string,
   external_id: PropTypes.number,
-  addToLibrary: PropTypes.func,
-  selectMovie: PropTypes.func,
+  in_library: PropTypes.bool,
+  selectable: PropTypes.bool,
+  handleAddedToLibraryCallback: PropTypes.func,
+  movieSelectCallback: PropTypes.func,
 };
 
 export default Movie;

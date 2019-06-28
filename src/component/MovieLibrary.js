@@ -44,7 +44,7 @@ class MovieLibrary extends React.Component {
           key={movie.id}
           {...movie}
           selectable={true}
-          selectMovie={this.props.selectMovie}
+          movieSelectCallback={this.props.movieSelectCallback}
         />
       );
     });
@@ -56,7 +56,9 @@ class MovieLibrary extends React.Component {
 }
 
 MovieLibrary.propTypes = {
-  selectMovie: PropTypes.func,
+  movieSelectCallback: PropTypes.func,
+  alertCallback: PropTypes.func,
+  hideWelcomeCallback: PropTypes.func,
 };
 
 export default MovieLibrary;

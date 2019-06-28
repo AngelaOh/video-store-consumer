@@ -27,7 +27,7 @@ class Homepage extends Component {
   handleMessageAlerts = (text, type) => {
     this.setState({ messageAlert: { text: text, type: type } });
   };
-  selectMovie = movie => {
+  onMovieSelect = movie => {
     if (this.state.messageAlert.text) {
       this.handleMessageAlerts('', '');
     }
@@ -151,7 +151,7 @@ class Homepage extends Component {
           path="/MovieSearch"
           render={() => (
             <MovieSearch
-              addToLibrary={this.addToLibrary}
+              addToLibraryCallback={this.addToLibrary}
               alertCallback={this.handleMessageAlerts}
               hideWelcomeCallback={this.hideWelcome}
             />
@@ -171,7 +171,7 @@ class Homepage extends Component {
           path="/MovieLibrary"
           render={() => (
             <MovieLibrary
-              selectMovie={this.selectMovie}
+              movieSelectCallback={this.onMovieSelect}
               alertCallback={this.handleMessageAlerts}
               hideWelcomeCallback={this.hideWelcome}
             />
