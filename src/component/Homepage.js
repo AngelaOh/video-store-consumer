@@ -79,6 +79,10 @@ class Homepage extends Component {
       });
   };
 
+  afterUpdateCustomer = () => {
+    this.setState({ updateCustomer: undefined });
+  };
+
   displaySelected = () => {
     const { selectedMovie, selectedCustomer } = this.state;
     return (
@@ -169,6 +173,7 @@ class Homepage extends Component {
               alertCallback={this.handleMessageAlerts}
               hideWelcomeCallback={this.hideWelcome}
               updateCustomer={this.state.updateCustomer}
+              afterUpdateCustomerCallback={this.afterUpdateCustomer}
             />
           )}
         />
