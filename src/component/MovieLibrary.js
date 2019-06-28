@@ -37,6 +37,22 @@ class MovieLibrary extends React.Component {
       });
   };
 
+  handleOnSelectMovie = selectedMovie => {
+    this.props.movieSelectCallback(selectedMovie);
+    const movieLibrary = this.state.movieList;
+    const resetMovie = movieLibrary.find(movie => {
+      return movie.selected === true;
+    });
+    const movie = movieLibrary.find(movie => {
+      return movie.external_id === selectedMovie.external_id;
+    });
+    if (resetMovie) {
+      movieLibrary[movieLibrary.indexOf(resetMovie)].selected = false;
+    }
+    movieLibrary[movieLibrary.indexOf(movie)].selected = true;
+    this.setState({ movieList: movieLibrary });
+  };
+
   movieCollection = () => {
     return this.state.movieList.map(movie => {
       return (
@@ -44,7 +60,7 @@ class MovieLibrary extends React.Component {
           key={movie.id}
           {...movie}
           selectable={true}
-          movieSelectCallback={this.props.movieSelectCallback}
+          handleMovieSelectCallback={this.handleOnSelectMovie}
         />
       );
     });
