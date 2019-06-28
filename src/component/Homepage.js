@@ -28,10 +28,16 @@ class Homepage extends Component {
     this.setState({ messageAlert: { text: text, type: type } });
   };
   selectMovie = movie => {
+    if (this.state.messageAlert.text) {
+      this.handleMessageAlerts('', '');
+    }
     this.setState({ selectedMovie: movie });
   };
 
   onCustomerSelect = customer => {
+    if (this.state.messageAlert.text) {
+      this.handleMessageAlerts('', '');
+    }
     this.setState({ selectedCustomer: customer });
   };
 
@@ -52,12 +58,16 @@ class Homepage extends Component {
         params
       )
       .then(response => {
+        this.handleMessageAlerts(
+          `The movie, ${
+            this.state.selectedMovie.title
+          }, has been checked out to ${this.state.selectedCustomer.name}.`,
+          'success'
+        );
         this.setState({
           selectedMovie: undefined,
           selectedCustomer: undefined,
         });
-
-        this.handleMessageAlerts('Movie checked out', 'success');
       })
       .catch(error => {
         console.log(error.response);
@@ -112,22 +122,22 @@ class Homepage extends Component {
     return (
       <Router>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <a class="navbar-brand" href="/">
+          <a className="navbar-brand" href="/">
             o'Hip Video Store
           </a>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav">
+              <li className="nav-item">
                 <Link className="nav-link" to="/MovieSearch">
                   Search Movies
                 </Link>{' '}
               </li>
-              <li class="nav-item">
+              <li className="nav-item">
                 <Link className="nav-link" to="/MovieLibrary">
                   Movie Library
                 </Link>
               </li>
-              <li class="nav-item">
+              <li className="nav-item">
                 <Link className="nav-link" to="/CustomerList">
                   Customer List
                 </Link>

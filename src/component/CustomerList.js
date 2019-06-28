@@ -23,13 +23,11 @@ class CustomerList extends Component {
     });
   };
 
-  componentDidMount() {
-    this.props.clearErrorCallback();
+  componentDidMount = () => {
+    this.props.alertCallback('', '');
     this.props.hideWelcomeCallback();
-    this.props.addLibraryCallback();
-    this.props.hideLibraryCallback();
     this.getCustomers();
-  }
+  };
 
   getCustomers = () => {
     URL = 'http://localhost:3000';
@@ -45,12 +43,12 @@ class CustomerList extends Component {
 
         if (customerList.length === 0) {
           const errorMessage = 'No customers in system.';
-          this.props.errorCallback(errorMessage);
+          this.props.alertCallback(errorMessage, 'danger');
         }
       })
       .catch(error => {
         console.log(error.message);
-        this.props.errorCallback(error.message);
+        this.props.alertCallback(error.message, 'danger');
       });
   };
 
