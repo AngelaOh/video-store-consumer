@@ -98,6 +98,8 @@ Movie.propTypes = {
   release_date: PropTypes.string,
   image_url: PropTypes.string,
   external_id: PropTypes.number,
+  in_library: PropTypes.bool,
+  selectable: PropTypes.bool,
   handleAddedToLibraryCallback: PropTypes.func,
   movieSelectCallback: PropTypes.func,
 };
