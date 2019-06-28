@@ -52,6 +52,16 @@ class MovieSearch extends Component {
     this.getMovies();
   };
 
+  handldAddedToLibrary = addedMovie => {
+    this.props.addToLibrary(addedMovie);
+    const movieList = this.state.searchedMovies;
+    const movie = movieList.find(movie => {
+      return movie.external_id === addedMovie.external_id;
+    });
+    movieList[movieList.indexOf(movie)].in_library = true;
+    this.setState({ searchedMovies: movieList });
+  };
+
   movieCollection = () => {
     return this.state.searchedMovies.map(movie => {
       return (
@@ -59,7 +69,7 @@ class MovieSearch extends Component {
           key={movie.id}
           {...movie}
           isSearch={this.state.isSearch}
-          addToLibrary={this.props.addToLibrary}
+          addToLibraryCallBack={this.handldAddedToLibrary}
         />
       );
     });

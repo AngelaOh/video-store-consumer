@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './Movie.css'
-import Modal from 'react-bootstrap/Modal'
-import Button from 'react-bootstrap/Button'
+import './Movie.css';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
 
 class Movie extends React.Component {
   constructor(props, context) {
-    super(props, context)
+    super(props, context);
 
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
@@ -25,15 +25,22 @@ class Movie extends React.Component {
   }
 
   addLibraryButton = (
-    <button className='btn btn-outline-success' onClick={() => this.props.addToLibrary({ ...this.props })}>
+    <button
+      className="btn btn-outline-success"
+      onClick={() => this.props.addToLibraryCallBack({ ...this.props })}
+    >
       Add to Library
     </button>
   );
-  inLibraryMessage = (
-    <div className='btn btn-danger'>In Movie Library</div>
-  )
+  inLibraryMessage = <div className="btn btn-danger">In Movie Library</div>;
   selectMovieButton = (
-    <button className='btn btn-outline-success' onClick={() => this.props.selectMovie({ ...this.props })}> Select </button>
+    <button
+      className="btn btn-outline-success"
+      onClick={() => this.props.selectMovie({ ...this.props })}
+    >
+      {' '}
+      Select{' '}
+    </button>
   );
 
   dynamicButton = () => {
@@ -48,13 +55,22 @@ class Movie extends React.Component {
 
   render() {
     return (
-          <div className='movie-list-container'>
-          <div className='movie-card-container card bg-light mb-3' type='button' variant="primary" onClick={this.handleShow}>
-            <p className='movie-title'>{this.props.title}</p>
-            <img className='card-img-top' src={this.props.image_url} alt="movie photo" />
-          </div>
+      <div className="movie-list-container">
+        <div
+          className="movie-card-container card bg-light mb-3"
+          type="button"
+          variant="primary"
+          onClick={this.handleShow}
+        >
+          <p className="movie-title">{this.props.title}</p>
+          <img
+            className="card-img-top"
+            src={this.props.image_url}
+            alt="movie photo"
+          />
+        </div>
 
-          <Modal show={this.state.show} onHide={this.handleClose}>
+        <Modal show={this.state.show} onHide={this.handleClose}>
           <Modal.Header closeButton>
             <Modal.Title>{this.props.title}</Modal.Title>
           </Modal.Header>
@@ -70,10 +86,10 @@ class Movie extends React.Component {
             {this.dynamicButton()}
           </Modal.Footer>
         </Modal>
-        </div>
+      </div>
     );
   }
-};
+}
 
 Movie.propTypes = {
   id: PropTypes.number,
