@@ -53,7 +53,7 @@ class MovieSearch extends Component {
   };
 
   handldAddedToLibrary = addedMovie => {
-    this.props.addToLibrary(addedMovie);
+    this.props.addToLibraryCallback(addedMovie);
     const movieList = this.state.searchedMovies;
     const movie = movieList.find(movie => {
       return movie.external_id === addedMovie.external_id;
@@ -69,7 +69,7 @@ class MovieSearch extends Component {
           key={movie.id}
           {...movie}
           isSearch={this.state.isSearch}
-          addToLibraryCallBack={this.handldAddedToLibrary}
+          handleAddedToLibraryCallback={this.handldAddedToLibrary}
         />
       );
     });
@@ -100,6 +100,9 @@ class MovieSearch extends Component {
 }
 
 MovieSearch.propTypes = {
-  addToLibrary: PropTypes.func,
+  addToLibraryCallback: PropTypes.func,
+  alertCallback: PropTypes.func,
+  hideWelcomeCallback: PropTypes.func,
 };
+
 export default MovieSearch;
