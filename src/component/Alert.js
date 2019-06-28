@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Alert = ({ message, type }) => {
+const Alert = ({ text, type }) => {
   return (
-    <div className={type}>
-      <p>Error: {message}</p>
+    <div className={`alert alert-${type}`}>
+      <p>Error: {text}</p>
     </div>
   );
 };
