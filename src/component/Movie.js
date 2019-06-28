@@ -30,7 +30,7 @@ class Movie extends React.Component {
     </button>
   );
   inLibraryMessage = (
-    <div className='badge badge-secondary'>In Movie Library</div>
+    <div className='btn btn-danger'>In Movie Library</div>
   )
   selectMovieButton = (
     <button className='btn btn-outline-success' onClick={() => this.props.selectMovie({ ...this.props })}> Select </button>
