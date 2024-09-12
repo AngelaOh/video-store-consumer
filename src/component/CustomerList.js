@@ -23,6 +23,19 @@ class CustomerList extends Component {
     });
   };
 
+  onUpdateCustomer = () => {
+    let { updateCustomer, afterUpdateCustomerCallback } = this.props;
+    if (updateCustomer) {
+      const customerList = this.state.customerList;
+      const customerChange = customerList.find(customer => {
+        return customer === updateCustomer;
+      });
+      customerList.indexOf(customerChange).movies_checked_out_count += 1;
+      this.setState({ customerList: customerList });
+      afterUpdateCustomerCallback();
+    }
+  };
+
   componentDidMount = () => {
     this.props.alertCallback('', '');
     this.props.hideWelcomeCallback();
